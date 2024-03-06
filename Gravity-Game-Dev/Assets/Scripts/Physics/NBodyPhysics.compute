@@ -1,0 +1,35 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+struct AstroBody
+{
+    float3 position;
+    float3 force;
+    float mass;
+};
+
+RWStructuredBuffer<AstroBody> astroBodies;
+int arrayLength;
+
+[numthreads(128,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    float G = 0.05;
+    float3 direction;
+    float forceTmp;
+    float distSqr;
+    
+    astroBodies[id.x].force = float3(0,0,0);
+
+    for(int i = 0; i < arrayLength; i++){
+        if((int)id.x != i){
+            distSqr = pow((astroBodies[i].position.x - astroBodies[id.x].position.x), 2) + pow((astroBodies[i].position.y - astroBodies[id.x].position.y), 2) + pow((astroBodies[i].position.z - astroBodies[id.x].position.z), 2);
+
+            forceTmp = (G * astroBodies[id.x].mass * astroBodies[i].mass / distSqr);
+
+            direction = float3(astroBodies[i].position.x - astroBodies[id.x].position.x, astroBodies[i].position.y - astroBodies[id.x].position.y, astroBodies[i].position.z - astroBodies[id.x].position.z);
+
+            astroBodies[id.x].force += direction * forceTmp;
+        }
+    }
+}
