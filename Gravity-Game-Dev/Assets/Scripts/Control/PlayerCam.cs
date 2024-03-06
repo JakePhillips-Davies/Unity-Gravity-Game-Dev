@@ -30,6 +30,6 @@ public class PlayerCam : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRot, yRot, 0);
         Body.transform.localRotation = Quaternion.Euler(0, yRot, 0);
 
-        transform.position = Body.transform.position + Body.transform.up * 0.75f;
+        transform.position = Body.transform.position + Body.transform.up * 1.5f;
     }
 }

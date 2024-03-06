@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     void GroundCheck()
     {
-        grounded = Physics.Raycast(transform.position, -transform.up, 1.1f);
+        grounded = Physics.Raycast(transform.position, -transform.up, 2.2f);
 
         if(grounded)
             rb.drag = groundDrag;
