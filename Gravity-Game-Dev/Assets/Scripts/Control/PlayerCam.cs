@@ -15,7 +15,7 @@ public class PlayerCam : MonoBehaviour
     public GameObject Body;
 
     //---                      ---//
-    void Start()
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
