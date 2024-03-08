@@ -7,6 +7,7 @@ public class ShipMovement : MonoBehaviour
     //---                      ---//
     public KeyCode activate;
     //---                      ---//
+
     void Update()
     {
         if(Input.GetKeyDown(activate)){

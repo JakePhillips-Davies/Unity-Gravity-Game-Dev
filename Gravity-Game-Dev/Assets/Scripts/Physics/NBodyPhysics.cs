@@ -33,7 +33,7 @@ public class NBodyPhysics : MonoBehaviour
         data = new AstroBody[bodies.Length];
 
         for(int i = 0; i < bodies.Length; i++) {
-            data[i].position = bodies[i].tm.position; 
+            data[i].position = bodies[i].tm.position;
             data[i].mass = bodies[i].rb.mass;
         }
 
