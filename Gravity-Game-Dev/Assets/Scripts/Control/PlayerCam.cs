@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class PlayerCam : MonoBehaviour
 {
@@ -14,8 +15,12 @@ public class PlayerCam : MonoBehaviour
 
     public GameObject Body;
 
+    public float reach;
+    private RaycastHit hit;
+    public KeyCode activateKey;
+
     //---                      ---//
-    void Awake()
+    void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -31,5 +36,15 @@ public class PlayerCam : MonoBehaviour
         Body.transform.localRotation = Quaternion.Euler(0, yRot, 0);
 
         transform.position = Body.transform.position + Body.transform.up * 1.5f;
+
+        activatableHandler();
+    }
+
+    void activatableHandler()
+    {
+        if(Physics.Raycast(transform.position, transform.forward, out hit, reach)){
+            if(Input.GetKeyDown(activateKey) && (hit.transform != null) && (hit.collider.GetComponent<Activator>() != null))
+                hit.collider.GetComponent<Activator>().Activate();
+        }
     }
 }

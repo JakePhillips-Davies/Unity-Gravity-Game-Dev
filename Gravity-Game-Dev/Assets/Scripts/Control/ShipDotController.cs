@@ -27,7 +27,7 @@ public class DotController : MonoBehaviour
 
         dotDistance = Vector2.ClampMagnitude(dotDistance, 1f);
 
-        transform.localPosition = new Vector3(dotDistance.x, dotDistance.y, 0f);
+        transform.localPosition = new Vector3(dotDistance.x*1.5f, dotDistance.y*1.5f, 0f);
     }
 
     void RotateShip()

@@ -6,11 +6,13 @@ using UnityEngine;
 public class SunlightController : MonoBehaviour
 {
     new Light light;
-    void FixedUpdate()
+    void Update()
     {
         light = GetComponent<Light>();
 
         transform.LookAt(Vector3.zero);
+
+        transform.forward = -transform.forward;
 
         light.intensity = 50000000 / (transform.position.magnitude * transform.position.magnitude);
     }
