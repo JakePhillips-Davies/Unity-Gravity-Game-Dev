@@ -1,19 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class SunlightController : MonoBehaviour
 {
-    new Light light;
-    void Update()
+    new HDAdditionalLightData light;
+    public float intensity;
+    public float sunPower;
+    void Start()
     {
-        light = GetComponent<Light>();
+        light = GetComponent<HDAdditionalLightData>();
+    }
+    void FixedUpdate()
+    {
+        Transform cam = Camera.main.transform;
 
-        transform.LookAt(Vector3.zero);
+        transform.LookAt(cam.position);
 
-        transform.forward = -transform.forward;
+        intensity = sunPower / (cam.position.magnitude / 1000);
 
-        light.intensity = 50000000 / (transform.position.magnitude * transform.position.magnitude);
+        light.intensity = intensity;
     }
 }

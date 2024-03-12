@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -28,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     //|| grounding ||//
     private Rigidbody rb;
+
+    public GameObject ship;
 
     //---                                ---//
 
