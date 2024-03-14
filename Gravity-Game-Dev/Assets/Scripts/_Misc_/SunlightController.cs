@@ -16,7 +16,7 @@ public class SunlightController : MonoBehaviour
 
         transform.LookAt(cam.position);
 
-        intensity = sunPower / (cam.position.magnitude / 1000);
+        intensity = sunPower / ((cam.position - transform.position).magnitude / 1000);
 
         light.intensity = intensity;
     }

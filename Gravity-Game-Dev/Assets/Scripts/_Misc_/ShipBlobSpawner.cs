@@ -19,6 +19,8 @@ public class ShipBlobSpawner : MonoBehaviour
     void OnEnable()
     {
         counter = period;
+
+        parent = GameObject.FindWithTag("System");
     }
 
     void FixedUpdate()

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.UI;
 
 public class PlayerCam : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class PlayerCam : MonoBehaviour
     public float reach;
     private RaycastHit hit;
     public KeyCode activateKey;
+
+    public GameObject panel;
+    public Text text;
 
     //---                      ---//
     void OnEnable()
@@ -42,9 +47,17 @@ public class PlayerCam : MonoBehaviour
 
     void activatableHandler()
     {
+        text.text = "";
+        panel.SetActive(false);
+
         if(Physics.Raycast(transform.position, transform.forward, out hit, reach)){
             if(Input.GetKeyDown(activateKey) && (hit.transform != null) && (hit.collider.GetComponent<Activator>() != null))
                 hit.collider.GetComponent<Activator>().Activate();
+
+            if((hit.transform != null) && (hit.collider.GetComponent<Activator>() != null)){
+                panel.SetActive(true);
+                text.text = String.Format("{0}", hit.collider.name);
+            }
         }
     }
 }
