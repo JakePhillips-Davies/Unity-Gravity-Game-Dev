@@ -18,7 +18,17 @@ public class ShipMovement : MonoBehaviour
     //||-- movement --||//
 
     public KeyCode activate;
+    
     public KeyCode freeCam;
+
+    public KeyCode tractorBeam;
+    public GameObject tractorBeamObj;
+    public KeyCode forceBeam;
+    public GameObject forceBeamObj;
+
+    public KeyCode blobGunKey;
+    public GameObject blobGunSpawner;
+
     //---                      ---//
 
     void OnEnable()
@@ -38,12 +48,35 @@ public class ShipMovement : MonoBehaviour
             ControlSwapper cs = GetComponent<ControlSwapper>();
             cs.Activate();
         }
+
+
         if(Input.GetKeyDown(freeCam))
         {
             ShipFreeCam cam = camera.GetComponent<ShipFreeCam>();
             cam.enabled = !cam.enabled;
         }
 
+
+        if(Input.GetKeyDown(tractorBeam))
+        {
+            tractorBeamObj.SetActive(!tractorBeamObj.activeSelf);
+            forceBeamObj.SetActive(false);
+        }
+        if(Input.GetKeyDown(forceBeam))
+        {
+            forceBeamObj.SetActive(!forceBeamObj.activeSelf);
+            tractorBeamObj.SetActive(false);
+        }
+
+
+        if(Input.GetKeyDown(blobGunKey))
+        {
+            blobGunSpawner.SetActive(true);
+        }
+        if(Input.GetKeyUp(blobGunKey))
+        {
+            blobGunSpawner.SetActive(false);
+        }
     }
 
     void FixedUpdate()

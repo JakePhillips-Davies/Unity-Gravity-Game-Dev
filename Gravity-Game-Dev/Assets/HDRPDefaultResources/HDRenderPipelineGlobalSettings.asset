@@ -16,7 +16,7 @@ MonoBehaviour:
   m_LookDevVolumeProfile: {fileID: 11400000, guid: 3f09a1bba677b3d44b5bb4b3c9ee90af, type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 140666587840333
+      data1: 140666587840335
       data2: 13763000512783810584
     lodBias: 1
     lodBiasMode: 0
