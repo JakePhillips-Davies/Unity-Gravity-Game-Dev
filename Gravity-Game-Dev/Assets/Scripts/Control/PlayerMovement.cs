@@ -91,4 +91,9 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
+
+    public void Teleport()
+    {
+        transform.localPosition = new Vector3(-13.98f, 84.71205f, 5.22f);
+    }
 }
