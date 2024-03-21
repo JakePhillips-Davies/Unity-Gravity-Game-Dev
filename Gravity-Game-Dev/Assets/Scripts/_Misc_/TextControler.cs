@@ -17,20 +17,33 @@ public class TextControler : MonoBehaviour
     public GameObject blobbener;
     ShipBlobSpawner bloob;
 
+    public GameObject bombGun;
+    ShipBombGun gun;
+
     private void Start() {
         bloob = blobbener.GetComponent<ShipBlobSpawner>();
+        gun = bombGun.GetComponent<ShipBombGun>();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(fUp) && Input.GetKey(KeyCode.LeftShift))
+        if(Input.GetKeyDown(fUp) && Input.GetKey(KeyCode.LeftShift)){
             bloob.forceMult += 10;
-        else if(Input.GetKeyDown(fUp))
+            gun.forceMult += 10;
+        }
+        else if(Input.GetKeyDown(fUp)){
             bloob.forceMult += 1;
-        if(Input.GetKeyDown(fDn) && Input.GetKey(KeyCode.LeftShift))
+            gun.forceMult += 1;
+        }
+        if(Input.GetKeyDown(fDn) && Input.GetKey(KeyCode.LeftShift)){
             bloob.forceMult -= 10;
-        else if(Input.GetKeyDown(fDn))
+            gun.forceMult -= 10;
+        }
+        else if(Input.GetKeyDown(fDn)){
             bloob.forceMult -= 1;
+            gun.forceMult -= 1;
+        }
+        
         if(Input.GetKeyDown(pUp))
             bloob.period += 1;
         if(Input.GetKeyDown(pDn))
